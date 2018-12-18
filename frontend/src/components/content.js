@@ -113,24 +113,25 @@ export default class Content extends Component {
 
   render() {
     return (
-      <div id="body--container">
-        <div id="body--container--monthLabel">
+      <div id="body--main-content">
+      <div id="calendar">
+        <div id="calendar--monthLabel">
           <h1>{this.props.month}</h1>
         </div>
-        <div id="body--container--content">
-          <div id="body--container--content--dateLabel">
-            {days.map(day => <div id="body--container--content--dateLabel__weekday">
+        <div id="calendar--content">
+          <div id="calendar--content--dateLabel">
+            {days.map(day => <div id="calendar--content--dateLabel__weekday">
               <p>{day}</p>
             </div>)}
           </div>
-          <div id="body--container--content--inner">
+          <div id="calendar--content--inner">
             {this
               .state
               .CompletionArray
-              .map(date => <div id="body--container--content--inner--box">
+              .map(date => <div id="calendar--content--inner--box">
                 {date.percent === 100
                   ? <div
-                      id="body--container--content--inner--date"
+                      id="calendar--content--inner--date"
                       style={{
                       backgroundColor: "#EC364F",
                       color: "#ffffff"
@@ -142,7 +143,7 @@ export default class Content extends Component {
                         strokeLinecap="round"/>
                       <h6>{date.date}</h6>
                     </div>
-                  : <div id="body--container--content--inner--date">
+                  : <div id="calendar--content--inner--date">
                     <Circle
                       percent={date.percent}
                       strokeWidth="10"
@@ -154,6 +155,7 @@ export default class Content extends Component {
               </div>)}
           </div>
         </div>
+      </div>
       </div>
     )
   }
