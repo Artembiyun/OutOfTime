@@ -2,11 +2,13 @@
 Habit Tracking Calendar 
 
 ## Current User Guide for Launch ##
-1.Update current date in daytracking.json 
+1.Update current date in daytracking.json
+
 2.Launch index.js with node in backend folder
+
 3.npm start in frontend folder  
 
-##Current List of Tasks##
+## Current List of Tasks ##
 1. Make App Function on any day
   - migrate app data from local .json files to mongo db
   - hold app data in two of tables history/current day
