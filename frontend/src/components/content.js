@@ -33,8 +33,10 @@ export default class Content extends Component {
     let CompletionArray = [];
     let CompletionObj = {};
     while (o <= (this.props.cMonth.length - 1)) {
-      if (this.props.cMonth[o] == this.props.cDay) {
-        this.state.currentArrayPos = o;
+      if (this.props.cMonth[o] === this.props.cDay) {
+        this.setState({
+          currentArrayPos: o
+        })
         CompletionObj = {
           date: this.props.cMonth[o],
           percent: this.props.completed,
@@ -57,11 +59,13 @@ export default class Content extends Component {
       CompletionArray.push(CompletionObj);
       o++;
     }
-    this.setState({CompletionArray: CompletionArray})
+    this.setState({
+      CompletionArray: CompletionArray
+    })
   }
 
   componentDidUpdate() {
-    if (this.state.CompletionArray[this.state.currentArrayPos].percent != this.props.completed) {
+    if (this.state.CompletionArray[this.state.currentArrayPos].percent !== this.props.completed) {
       this.MonitorCurrentDay();
     }
   }
@@ -71,7 +75,7 @@ export default class Content extends Component {
     let pos = 0;
     let l = array.length - 1;
     while (l) {
-      if (this.props.date == array[l].date) {
+      if (this.props.date === array[l].date) {
         pos = l;
       }
       l--;
@@ -83,17 +87,17 @@ export default class Content extends Component {
       color: this.colorFunction(this.props.completed)
     }
       array[pos] = obj;
-      this.setState({
-        CompletionArray: array,
-        currentArrayPos: pos
-      })
+      // this.setState({
+      //   CompletionArray: array,
+      //   currentArrayPos: pos
+      // })
   }
 
   colorFunction(percent) {
     const colorMap = ['#EC364F', '#EC364F', '#EC364F', '#EC364F', '#EC364F'];
     let c = 0;
 
-    if (percent == 100) {
+    if (percent === 100) {
       c = 4;
     } else if (percent > 75) {
       c = 3;
@@ -124,7 +128,7 @@ export default class Content extends Component {
               .state
               .CompletionArray
               .map(date => <div id="body--container--content--inner--box">
-                {date.percent == 100
+                {date.percent === 100
                   ? <div
                       id="body--container--content--inner--date"
                       style={{

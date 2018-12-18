@@ -65,21 +65,19 @@ class App extends Component {
           let day = this.getCurrentDay()
           let hour = this.getCurrentHour();
           this.timeofDay(hour);
-          this.timefoMonth(day);
+          this.timeofMonth(day);
         });
       })
   }
   //####Moment.Js functions####
 
-  timefoMonth(t) {
-    // let date = t;
-    let date = 16;
+  timeofMonth(t) {
+    let date = t;
     this.setState({date});
   }
 
   timeofDay(h) {
     let d = 0;
-    console.log(h);
     if (h < 12) {
       d = 0;
     } else if (h < 17) {
@@ -91,13 +89,13 @@ class App extends Component {
   }
 
   changeDay(direction) {
-    let newDate = this.state.date;
-    if (direction == 1) {
+    let newDate = 0;
+    if (direction === 1) {
       newDate++;
     } else {
       newDate--;
     }
-    if (this.state.date < newDate) {
+    if (0 < newDate) {
       this.pushNewDate(newDate);
     } else {
       this.setState({date: newDate})
@@ -105,7 +103,7 @@ class App extends Component {
   }
 
   pushNewDate(newDate){
-    let date = this.state.date;
+    let date = 0;
     let newDateObj = this.state.data[date];
     let i = newDateObj.daily.length;
     while(i){
@@ -134,16 +132,16 @@ class App extends Component {
 
   changePeriod(direction) {
     let d = this.state.d;
-    if (direction == 1) {
+    if (direction === 1) {
       if (d < 2) {
         d++;
-      } else if (d == 2) {
+      } else if (d === 2) {
         d = 0;
       }
-    } else if (direction == 0) {
+    } else if (direction === 0) {
       if (0 < d) {
         d--;
-      } else if (d == 0) {
+      } else if (d === 0) {
         d = 2;
       }
     }
@@ -216,22 +214,22 @@ class App extends Component {
     if (!result.destination) {
       return;
     }
-    const habits = reorder(this.state.data[this.state.date].daily[this.state.d].habits, result.source.index, result.destination.index);
+    const habits = reorder(this.state.data[0].daily[this.state.d].habits, result.source.index, result.destination.index);
     let updated = this.state;
-    updated.data[this.state.date].daily[this.state.d].habits = habits;
+    updated.data[0].daily[this.state.d].habits = habits;
     this.setState({updated});
   }
 
   addHabit(newhabit, newid) {
     let updated = {}
-    updated = this.state.data[this.state.date].daily[this.state.d].habits;
+    updated = this.state.data[0].daily[this.state.d].habits;
     updated.push(newhabit);
     this.setState({updated, newid});
   }
 
   toggleHabs(id, status) {
     let stat = this.state.data;
-    stat[this.state.date].daily[this.state.d].habits[id].status = status;
+    stat[0].daily[this.state.d].habits[id].status = status;
     this.setState({
       data:stat
     });
@@ -239,24 +237,24 @@ class App extends Component {
   }
 
   deleteHabs(id, d) {
-    let habs = this.state.data[this.state.date].daily[d];
-    let habsLength = this.state.data[this.state.date].daily[d].habits.length;
+    let habs = this.state.data[0].daily[d];
+    let habsLength = this.state.data[0].daily[d].habits.length;
     let newHabs = [];
 
     for (let i = 0; i < habsLength; i++) {
-      if (habs.habits[i].id != id) {
+      if (habs.habits[i].id !== id) {
         newHabs.push(habs.habits[i]);
       }
     }
     let updated = this.state;
-    updated.data[this.state.date].daily[this.state.d].habits = newHabs;
+    updated.data[0].daily[this.state.d].habits = newHabs;
     this.setState({updated});
   }
 
   completionStatus(d) {
     let s = 0;
-    for (let i = 0; i < this.state.data[this.state.date].daily[d].habits.length; i++) {
-      if (this.state.data[this.state.date].daily[d].habits[i].status == true) {
+    for (let i = 0; i < this.state.data[0].daily[d].habits.length; i++) {
+      if (this.state.data[0].daily[d].habits[i].status === true) {
         s++;
       }
     }
@@ -267,11 +265,11 @@ class App extends Component {
   returnStats() {
     let checked = 0;
     let total = 0;
-    let periods = this.state.data[this.state.date].daily.length;
+    let periods = this.state.data[0].daily.length;
 
     for (let i = 0; i < periods; i++) {
-      for (let j = 0; j < this.state.data[this.state.date].daily[i].habits.length; j++) {
-        if (this.state.data[this.state.date].daily[i].habits[j].status == true) {
+      for (let j = 0; j < this.state.data[0].daily[i].habits.length; j++) {
+        if (this.state.data[0].daily[i].habits[j].status === true) {
           checked++
         }
         total++;
@@ -299,7 +297,7 @@ class App extends Component {
             changePeriod={this.changePeriod}
             changeDay={this.changeDay}
             deleteHabs={this.deleteHabs}
-            date={this.state.date}/>
+            date={0}/>
 }
 
         {this.state.isLoading
@@ -309,7 +307,7 @@ class App extends Component {
             color={this.state.color}
             total={this.state.total}
             cMonth={this.getDaysArrayByMonth()}
-            date={this.state.date}
+            date={0}
             dateData={this.state.data}
             month={this.getCurrentMonth()}
             sendContentInf={this.sendConentInfo}
