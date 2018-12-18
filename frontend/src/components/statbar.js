@@ -40,7 +40,7 @@ export default class Statbar extends Component {
       if (this.props.stats.data[l].percent === 100){
         streak++;
       }
-      else if (this.props.stats.data[l].percent != 100){
+      else if (this.props.stats.data[l].percent !== 100){
         streak = 0;
       }
       o++;
