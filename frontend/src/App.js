@@ -47,7 +47,7 @@ class App extends Component {
 
     this.state = {
       isLoading: true,
-      d: 0,
+      timeOfD: 0,
       newid: 1,
       completed: 0,
       percentageComplete: 0,
@@ -131,7 +131,7 @@ class App extends Component {
   }
 
   changePeriod(direction) {
-    let d = this.state.d;
+    let d = this.state.timeOfD;
     if (direction === 1) {
       if (d < 2) {
         d++;
@@ -145,7 +145,7 @@ class App extends Component {
         d = 2;
       }
     }
-    this.setState({d: d});
+    this.setState({timeOfD: d});
     this.completionStatus(d);
   }
 
@@ -214,26 +214,26 @@ class App extends Component {
     if (!result.destination) {
       return;
     }
-    const habits = reorder(this.state.data[0].daily[this.state.d].habits, result.source.index, result.destination.index);
+    const habits = reorder(this.state.data[0].daily[this.state.timeOfD].habits, result.source.index, result.destination.index);
     let updated = this.state;
-    updated.data[0].daily[this.state.d].habits = habits;
+    updated.data[0].daily[this.state.timeOfD].habits = habits;
     this.setState({updated});
   }
 
   addHabit(newhabit, newid) {
     let updated = {}
-    updated = this.state.data[0].daily[this.state.d].habits;
+    updated = this.state.data[0].daily[this.state.timeOfD].habits;
     updated.push(newhabit);
     this.setState({updated, newid});
   }
 
   toggleHabs(id, status) {
     let stat = this.state.data;
-    stat[0].daily[this.state.d].habits[id].status = status;
+    stat[0].daily[this.state.timeOfD].habits[id].status = status;
     this.setState({
       data:stat
     });
-    this.completionStatus(this.state.d);
+    this.completionStatus(this.state.timeOfD);
   }
 
   deleteHabs(id, d) {
@@ -247,7 +247,7 @@ class App extends Component {
       }
     }
     let updated = this.state;
-    updated.data[0].daily[this.state.d].habits = newHabs;
+    updated.data[0].daily[this.state.timeOfD].habits = newHabs;
     this.setState({updated});
   }
 
@@ -279,19 +279,17 @@ class App extends Component {
   }
 
   //#### React DND ends ####
-
   render() {
     return (
       <div id="body">
         <Navbar/> {this.state.isLoading
           ? "...Loading"
           : <Sidebar
-            d={this.state.d}
+            timeOfD={this.state.timeOfD}
             onDragEnd={this.onDragEnd}
             data={this.state}
             datelong={this.getCurrentDate()}
             completed={this.state.completed}
-            newid={this.state.newid}
             addHabit={this.addHabit}
             toggleHabs={this.toggleHabs}
             changePeriod={this.changePeriod}
@@ -303,14 +301,10 @@ class App extends Component {
         {this.state.isLoading
           ? "...Loading"
           : <Content
-            completed={this.state.percentageComplete}
-            color={this.state.color}
-            total={this.state.total}
             cMonth={this.getDaysArrayByMonth()}
+            month={this.getCurrentMonth()}
             date={0}
             dateData={this.state.data}
-            month={this.getCurrentMonth()}
-            sendContentInf={this.sendConentInfo}
             cDay={this.getCurrentDay()}/>
 }
         {this.state.isLoading

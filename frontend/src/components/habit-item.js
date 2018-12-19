@@ -36,7 +36,7 @@ export default class Habit extends Component {
             {...provided.dragHandleProps}
             ref={provided.innerRef}>
             <h5>{this.props.index + 1}</h5>
-            <h5 id="deletebutton" onClick={() => this.props.deleteHabs(this.props.habit.id, this.props.d)}>X</h5>
+            <h5 id="deletebutton" onClick={() => this.props.deleteHabs(this.props.habit.id, this.props.timeOfD)}>X</h5>
             <h5>{this.props.habit.name}</h5>
             <label className="switch">
               <input id={this.props.habKey} type="checkbox" onInput={this.check}/>
