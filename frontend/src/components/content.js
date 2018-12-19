@@ -87,28 +87,15 @@ export default class Content extends Component {
       color: this.colorFunction(this.props.completed)
     }
       array[pos] = obj;
-      // this.setState({
-      //   CompletionArray: array,
-      //   currentArrayPos: pos
-      // })
+      this.setState({
+        CompletionArray: array,
+        currentArrayPos: pos
+      })
   }
 
-  colorFunction(percent) {
-    const colorMap = ['#EC364F', '#EC364F', '#EC364F', '#EC364F', '#EC364F'];
-    let c = 0;
-
-    if (percent === 100) {
-      c = 4;
-    } else if (percent > 75) {
-      c = 3;
-    } else if (percent > 50) {
-      c = 2;
-    } else if (percent > 25) {
-      c = 1;
-    } else if (percent > 10) {
-      c = 0;
-    }
-    return colorMap[c];
+  colorFunction() {
+    const colorMap = ['#EC364F'];
+    return colorMap[0];
   }
 
   render() {

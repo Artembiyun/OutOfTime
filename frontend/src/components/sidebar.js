@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
     let newhabitname = document
       .getElementById('addhabit--searchfield')
       .value;
-      let size = this.props.data.data[this.props.date].daily[this.props.d].habits.length;
+      let size = this.props.data.data[this.props.date].daily[this.props.timeOfD].habits.length;
       let newid = size + 1;
       let newhabit = {
         name: newhabitname,
@@ -34,7 +34,7 @@ export default class Sidebar extends Component {
       <div id="body--left-sidebar">
       <div id="sidebar">
         <Timetab
-          period={this.props.data.data[this.props.date].daily[this.props.d].name}
+          period={this.props.data.data[this.props.date].daily[this.props.timeOfD].name}
           changePeriod={this.props.changePeriod}
           changeDay={this.props.changeDay}
           date={this.props.datelong}/>
@@ -47,21 +47,21 @@ export default class Sidebar extends Component {
                     .props
                     .data
                     .data[this.props.date]
-                    .daily[this.props.d]
+                    .daily[this.props.timeOfD]
                     .habits
                     .map((habit, index) => <Habit
                       provided={provided}
                       innerRef={provided.innerRef}
-                      key={habit.id + this.props.d}
-                      habKey={habit.id + this.props.d}
-                      d={this.props.d}
+                      key={habit.id + this.props.timeOfD}
+                      habKey={habit.id + this.props.timeOfD}
+                      timeOfD={this.props.timeOfD}
                       habit={habit}
                       index={index}
                       status={habit.status}
                       deleteHabs={this.props.deleteHabs}
                       toggleHabs={this.props.toggleHabs}/>)}
                   {provided.placeholder}
-                  {(6 > this.props.data.data[this.props.date].daily[this.props.d].habits.length)
+                  {(6 > this.props.data.data[this.props.date].daily[this.props.timeOfD].habits.length)
                     ? (
                       <div id="sidebar--inner__canvas__additem">
                         <div id="addhabit">
