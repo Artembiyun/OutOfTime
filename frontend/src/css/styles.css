@@ -14,6 +14,27 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+#body--right-sidebar {
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  grid-row-end: 6;
+}
+
+#body--left-sidebar {
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  grid-row-end: 6;
+}
+
+#body--main-content {
+  -ms-grid-column: 3;
+      grid-column-start: 3;
+  -ms-grid-row: 4;
+      grid-row-start: 4;
+}
+
 #body--nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -31,7 +52,7 @@
   background-color: #262626;
 }
 
-#body--sidebar {
+#sidebar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -43,13 +64,11 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  -ms-grid-row: 2;
-      grid-row-start: 2;
-  grid-row-end: 6;
   background-color: #ffffff46;
+  height: 100%;
 }
 
-#body--sidebar--label {
+#sidebar--label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,7 +86,7 @@
   line-height: 30px;
 }
 
-#body--sidebar--inner {
+#sidebar--inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -85,7 +104,7 @@
   padding-bottom: 10px;
 }
 
-#body--sidebar--inner__canvas {
+#sidebar--inner__canvas {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -104,7 +123,7 @@
   overflow: auto;
 }
 
-#body--sidebar--inner__canvas__additem {
+#sidebar--inner__canvas__additem {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -123,11 +142,11 @@
   background-color: white;
 }
 
-#body--sidebar--inner__canvas__additem:hover {
+#sidebar--inner__canvas__additem:hover {
   background-color: #ececec;
 }
 
-#body--sidebar--inner__canvas__item {
+#sidebar--inner__canvas__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -146,20 +165,16 @@
   background-color: white;
 }
 
-#body--sidebar--inner__canvas__item:hover {
+#sidebar--inner__canvas__item:hover {
   background-color: #ececec;
 }
 
-#body--container {
-  -ms-grid-column: 3;
-      grid-column-start: 3;
-  -ms-grid-row: 4;
-      grid-row-start: 4;
+#calendar {
   width: 100%;
   height: 100%;
 }
 
-#body--container--monthLabel {
+#calendar--monthLabel {
   height: 40px;
   width: 200px;
   line-height: 35px;
@@ -174,7 +189,7 @@
           align-items: center;
 }
 
-#body--container--content {
+#calendar--content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -193,7 +208,7 @@
   height: 90%;
 }
 
-#body--container--content--dateLabel {
+#calendar--content--dateLabel {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -206,7 +221,7 @@
   width: 96%;
 }
 
-#body--container--content--dateLabel__weekday {
+#calendar--content--dateLabel__weekday {
   width: 60px;
   text-align: center;
   color: #262626;
@@ -215,7 +230,7 @@
   font-weight: bolder;
 }
 
-#body--container--content--inner {
+#calendar--content--inner {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -232,7 +247,7 @@
   height: 96%;
 }
 
-#body--container--content--inner--box {
+#calendar--content--inner--box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -246,7 +261,7 @@
   width: 90%;
 }
 
-#body--container--content--inner--date {
+#calendar--content--inner--date {
   color: #262626;
   background-color: white;
   font-weight: bold;
@@ -259,7 +274,7 @@
   line-height: 35px;
 }
 
-#body--stat-bar {
+#stat-bar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -271,14 +286,10 @@
       -ms-flex-align: end;
           align-items: flex-end;
   background-color: #ececec;
-  -ms-grid-column: 5;
-      grid-column-start: 5;
-  -ms-grid-row: 2;
-      grid-row-start: 2;
-  grid-row-end: 6;
+  height: 100%;
 }
 
-#body--stat-bar__stat-inner {
+#stat-bar__stat-inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -299,7 +310,7 @@
   padding-bottom: 10px;
 }
 
-#body--stat-bar__stat-inner--label {
+#stat-bar__stat-inner--label {
   margin-top: 0.5rem;
   height: 30px;
   width: 100%;
@@ -314,7 +325,7 @@
   line-height: 30px;
 }
 
-#body--stat-bar__stat-inner--circle {
+#stat-bar__stat-inner--circle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

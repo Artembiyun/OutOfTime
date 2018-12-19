@@ -51,19 +51,21 @@ export default class Statbar extends Component {
 
   render() {
     return (
-        <div id="body--stat-bar">
-        <div id="body--stat-bar__stat-inner">
-            <div id="body--stat-bar__stat-inner--circle">
+        <div id="body--right-sidebar">
+        <div id="stat-bar">
+        <div id="stat-bar__stat-inner">
+            <div id="stat-bar__stat-inner--circle">
             <h3>{this.props.month}</h3>
               <Line percent={this.monthPercent()} strokeWidth="5" strokeColor="#EC364F" />
             </div>
           </div>
-          <div id="body--stat-bar__stat-inner">
-            <div id="body--stat-bar__stat-inner--circle">
+          <div id="stat-bar__stat-inner">
+            <div id="stat-bar__stat-inner--circle">
             <Circle percent={this.completionRate()} strokeWidth="12" strokeColor="#EC364F" />
             <h3>Total</h3>
             </div>
           </div>
+        </div>
         </div>
     )
   }
