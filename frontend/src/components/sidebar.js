@@ -31,14 +31,15 @@ export default class Sidebar extends Component {
 
   render() {
     return (
-      <div id="body--sidebar">
+      <div id="body--left-sidebar">
+      <div id="sidebar">
         <Timetab
           period={this.props.data.data[this.props.date].daily[this.props.timeOfD].name}
           changePeriod={this.props.changePeriod}
           changeDay={this.props.changeDay}
           date={this.props.datelong}/>
         <DragDropContext onDragEnd={this.props.onDragEnd}>
-          <div id="body--sidebar--inner">
+          <div id="sidebar--inner">
             <Droppable droppableId={"1"} index={0}>
               {(provided, snapshot) => (
                 <Canvas provided={provided} innerRef={provided.innerRef}>
@@ -62,7 +63,7 @@ export default class Sidebar extends Component {
                   {provided.placeholder}
                   {(6 > this.props.data.data[this.props.date].daily[this.props.timeOfD].habits.length)
                     ? (
-                      <div id="body--sidebar--inner__canvas__additem">
+                      <div id="sidebar--inner__canvas__additem">
                         <div id="addhabit">
                           <form onSubmit={this.addHabit}>
                             <input
@@ -80,11 +81,12 @@ export default class Sidebar extends Component {
             </Droppable>
           </div>
         </DragDropContext>
-        <div id="body--sidebar--inner">
-          <div id="body--sidebar--label">
-            <h5>Completed: {this.props.completed}/{this.props.data.data[this.props.date].daily[this.props.timeOfD].habits.length}</h5>
+        <div id="sidebar--inner">
+          <div id="sidebar--label">
+            <h5>Completed: {this.props.completed}/{this.props.data.data[this.props.date].daily[this.props.d].habits.length}</h5>
           </div>
         </div>
+      </div>
       </div>
     )
   }
