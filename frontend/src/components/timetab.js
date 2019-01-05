@@ -20,16 +20,14 @@ export default class Timetab extends Component {
 
   render() {
     return (
-      <div id="sidebar--inner">
-        <div id="sidebar--label">
-        <h5 onClick={() => this.props.changeDay(0)}>{"<"}</h5>
+      <div id="body--sidebar--inner">
+        <div id="body--sidebar--label">
           <h5>{this.props.date}</h5>
-        <h5 onClick={() => this.props.changeDay(1)}>{">"}</h5>
         </div>
-        <div id="sidebar--label">
-          <h3 onClick={() => this.props.changePeriod(0)}>{"<"}</h3>
+        <div id="body--sidebar--label">
+          <h3 onClick={() => this.props.changePeriod(0)}>{"◄"}</h3>
           <h3>{this.props.period}</h3>
-          <h3 onClick={() => this.props.changePeriod(1)}>{">"}</h3>
+          <h3 onClick={() => this.props.changePeriod(1)}>{"►"}</h3>
         </div>
         <div id="sidebar--label">
           <h5>{this.state.time}</h5>

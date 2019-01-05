@@ -33,21 +33,19 @@ export default class Content extends Component {
     let CompletionArray = [];
     let CompletionObj = {};
     while (o <= (this.props.cMonth.length - 1)) {
-      if (this.props.cMonth[o] === this.props.cDay) {
-        this.setState({
-          currentArrayPos: o
-        })
+      if (this.props.cMonth[o] == this.props.cDay) {
         CompletionObj = {
           date: this.props.cMonth[o],
           percent: this.props.completed,
           color: this.colorFunction(CompletionObj.percent)
         }
+        this.setState({currentArrayPos: o}); 
       } else if (this.props.cMonth[o] < this.props.cDay) {
-        const random = (Math.random() * 100);
-        const color = this.colorFunction(random);
+        const num = (25);
+        const color = this.colorFunction(num);
         CompletionObj = {
           date: this.props.cMonth[o],
-          percent: random,
+          percent: num,
           color: color
         }
       } else {
@@ -56,8 +54,8 @@ export default class Content extends Component {
           percent: 0
         }
       }
-      CompletionArray.push(CompletionObj);
       o++;
+      CompletionArray.push(CompletionObj);
     }
     this.setState({
       CompletionArray: CompletionArray
@@ -65,6 +63,7 @@ export default class Content extends Component {
   }
 
   componentDidUpdate() {
+    console.log(this.state.CompletionArray);
     if (this.state.CompletionArray[this.state.currentArrayPos].percent !== this.props.completed) {
       this.MonitorCurrentDay();
     }
@@ -72,22 +71,23 @@ export default class Content extends Component {
 
   MonitorCurrentDay() {
     let array = this.state.CompletionArray;
-    let pos = 0;
+    let pos = this.state.currentArrayPos;
     let l = array.length - 1;
     while (l) {
-      if (this.props.date === array[l].date) {
+      if (this.props.cDay == array[l].date) {
         pos = l;
       }
       l--;
     }
-
+    console.log(this.props.cDay);
     let obj = {
-      date: this.props.date,
+      date: this.props.cDay,
       percent: this.props.completed,
       color: this.colorFunction(this.props.completed)
     }
       array[pos] = obj;
       this.setState({
+        date: this.props.cDay,
         CompletionArray: array,
         currentArrayPos: pos
       })
@@ -118,11 +118,16 @@ export default class Content extends Component {
               .map(date => <div id="calendar--content--inner--box">
                 {date.percent === 100
                   ? <div
+<<<<<<< HEAD
+                      id="body--container--content--inner--date"
+                      style={{backgroundColor: "#EC364F", color: "#ffffff"}}>
+=======
                       id="calendar--content--inner--date"
                       style={{
                       backgroundColor: "#EC364F",
                       color: "#ffffff"
                     }}>
+>>>>>>> 8faee03a3a049e74355e3b8fbeae5f03ca4ba824
                       <Circle
                         percent={date.percent}
                         strokeWidth="10"
