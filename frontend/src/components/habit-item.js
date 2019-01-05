@@ -31,7 +31,7 @@ export default class Habit extends Component {
       <Draggable draggableId={this.props.habit.id} index={this.props.index}>
         {(provided, snapshot) => (
           <div
-            id="body--sidebar--inner__canvas__item"
+            id="sidebar--inner__canvas__item"
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}>

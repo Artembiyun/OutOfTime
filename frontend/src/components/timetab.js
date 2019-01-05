@@ -29,7 +29,7 @@ export default class Timetab extends Component {
           <h3>{this.props.period}</h3>
           <h3 onClick={() => this.props.changePeriod(1)}>{"►"}</h3>
         </div>
-        <div id="body--sidebar--label">
+        <div id="sidebar--label">
           <h5>{this.state.time}</h5>
         </div>
       </div>
