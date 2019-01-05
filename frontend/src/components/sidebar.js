@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
     let newhabitname = document
       .getElementById('addhabit--searchfield')
       .value;
-      let size = this.props.data.data[this.props.date].daily[this.props.timeOfD].habits.length;
+      let size = this.props.data.data.daily[this.props.timeOfD].habits.length;
       let newid = size + 1;
       let newhabit = {
         name: newhabitname,
@@ -32,8 +32,9 @@ export default class Sidebar extends Component {
   render() {
     return (
       <div id="body--sidebar">
+      {console.log(this.props.data.data.daily[0])}
         <Timetab
-          period={this.props.data.data[this.props.date].daily[this.props.timeOfD].name}
+          period={this.props.data.data.daily[this.props.timeOfD].name}
           changePeriod={this.props.changePeriod}
           changeDay={this.props.changeDay}
           date={this.props.datelong}/>
@@ -45,7 +46,7 @@ export default class Sidebar extends Component {
                   {this
                     .props
                     .data
-                    .data[this.props.date]
+                    .data
                     .daily[this.props.timeOfD]
                     .habits
                     .map((habit, index) => <Habit
@@ -60,7 +61,7 @@ export default class Sidebar extends Component {
                       deleteHabs={this.props.deleteHabs}
                       toggleHabs={this.props.toggleHabs}/>)}
                   {provided.placeholder}
-                  {(6 > this.props.data.data[this.props.date].daily[this.props.timeOfD].habits.length)
+                  {(6 > this.props.data.data.daily[this.props.timeOfD].habits.length)
                     ? (
                       <div id="body--sidebar--inner__canvas__additem">
                         <div id="addhabit">
@@ -82,7 +83,7 @@ export default class Sidebar extends Component {
         </DragDropContext>
         <div id="body--sidebar--inner">
           <div id="body--sidebar--label">
-            <h5>Completed: {this.props.completed}/{this.props.data.data[this.props.date].daily[this.props.timeOfD].habits.length}</h5>
+            <h5>Completed: {this.props.completed}/{this.props.data.data.daily[this.props.timeOfD].habits.length}</h5>
           </div>
         </div>
       </div>
