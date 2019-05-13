@@ -81,8 +81,8 @@ export default class Sidebar extends Component {
             </Droppable>
           </div>
         </DragDropContext>
-        <div id="body--sidebar--inner">
-          <div id="body--sidebar--label">
+        <div id="sidebar--inner">
+          <div id="sidebar--label">
             <h5>Completed: {this.props.completed}/{this.props.data.data.daily[this.props.timeOfD].habits.length}</h5>
           </div>
         </div>

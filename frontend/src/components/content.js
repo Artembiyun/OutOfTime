@@ -63,7 +63,6 @@ export default class Content extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.CompletionArray);
     if (this.state.CompletionArray[this.state.currentArrayPos].percent !== this.props.completed) {
       this.MonitorCurrentDay();
     }
@@ -79,7 +78,6 @@ export default class Content extends Component {
       }
       l--;
     }
-    console.log(this.props.cDay);
     let obj = {
       date: this.props.cDay,
       percent: this.props.completed,
@@ -118,16 +116,11 @@ export default class Content extends Component {
               .map(date => <div id="calendar--content--inner--box">
                 {date.percent === 100
                   ? <div
-<<<<<<< HEAD
-                      id="body--container--content--inner--date"
-                      style={{backgroundColor: "#EC364F", color: "#ffffff"}}>
-=======
                       id="calendar--content--inner--date"
                       style={{
                       backgroundColor: "#EC364F",
                       color: "#ffffff"
                     }}>
->>>>>>> 8faee03a3a049e74355e3b8fbeae5f03ca4ba824
                       <Circle
                         percent={date.percent}
                         strokeWidth="10"

@@ -46,7 +46,7 @@ class App extends Component {
       .bind(this);
 
     this.state = {
-      isLoading: true,
+      isLoading: false,
       timeOfD: 0,
       newid: 1,
       completed: 0,
@@ -56,13 +56,46 @@ class App extends Component {
         daily: [
           {
             name: "Morning",
-            habits: []
+            habits: [
+              {
+                name: "poo",
+                value: 0,
+                id: 1
+              },
+              {
+                name: "ok",
+                value: 0,
+                id: 2
+              }
+            ]
           }, {
             name: "Noon",
-            habits: []
+            habits: [
+              {
+                name: "poo",
+                value: 0,
+                id: 1
+              },
+              {
+                name: "ok",
+                value: 0,
+                id: 2
+              }
+            ]
           }, {
             name: "Evening",
-            habits: []
+            habits: [
+              {
+                name: "poo",
+                value: 0,
+                id: 1
+              },
+              {
+                name: "ok",
+                value: 0,
+                id: 2
+              }
+            ]
           }
         ]
       }
@@ -71,23 +104,27 @@ class App extends Component {
 
     componentDidMount() {
       this.getuserinfo();
-      
     }
 
     getuserinfo(){
-      fetch('http://localhost:8080/userinfo/artem')
-        .then(response => response.json())
-        .then(data => {
-          this.setState({
-            data: data,
-            isLoading: false
-          }, () => {
-            let day = this.getCurrentDay();
-            let hour = this.getCurrentHour();
-            this.timeofDay(hour);
-            this.timeofMonth(day);
-          });
-        })
+      // fetch('http://localhost:8080/userinfo/artem')
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     this.setState({
+      //       data: data,
+      //       isLoading: false
+      //     }, () => {
+      //       let day = this.getCurrentDay();
+      //       let hour = this.getCurrentHour();
+      //       this.timeofDay(hour);
+      //       this.timeofMonth(day);
+      //     });
+      //   })
+
+      let day = this.getCurrentDay();
+      let hour = this.getCurrentHour();
+      this.timeofDay(hour);
+      this.timeofMonth(day);
     }
 
     //####Moment.Js functions####
@@ -224,7 +261,6 @@ class App extends Component {
     getContentInfo(completed, total) {
       let l = completed / total;
       l = l * 100;
-      console.log(this.state);
       this.setState({percentageComplete: l});
     }
     //#### Data ENDS #### #### React DND ####
@@ -232,29 +268,30 @@ class App extends Component {
       if (!result.destination) {
         return;
       }
-      const habits = reorder(this.state.data[0].daily[this.state.timeOfD].habits, result.source.index, result.destination.index);
+      {console.log(this.state.data.daily)}
+      const habits = reorder(this.state.data.daily[this.state.timeOfD].habits, result.source.index, result.destination.index);
       let updated = this.state;
-      updated.data[0].daily[this.state.timeOfD].habits = habits;
+      updated.data.daily[this.state.timeOfD].habits = habits;
       this.setState({updated});
     }
 
     addHabit(newhabit, newid) {
       let updated = {}
-      updated = this.state.data[0].daily[this.state.timeOfD].habits;
+      updated = this.state.data.daily[this.state.timeOfD].habits;
       updated.push(newhabit);
       this.setState({updated, newid});
     }
 
     toggleHabs(id, status) {
       let stat = this.state.data;
-      stat[0].daily[this.state.timeOfD].habits[id].status = status;
+      stat.daily[this.state.timeOfD].habits[id].status = status;
       this.setState({data: stat});
       this.completionStatus(this.state.timeOfD);
     }
 
     deleteHabs(id, d) {
-      let habs = this.state.data[0].daily[d];
-      let habsLength = this.state.data[0].daily[d].habits.length;
+      let habs = this.state.data.daily[d];
+      let habsLength = this.state.data.daily[d].habits.length;
       let newHabs = [];
 
       for (let i = 0; i < habsLength; i++) {
@@ -263,14 +300,14 @@ class App extends Component {
         }
       }
       let updated = this.state;
-      updated.data[0].daily[this.state.timeOfD].habits = newHabs;
+      updated.data.daily[this.state.timeOfD].habits = newHabs;
       this.setState({updated});
     }
 
     completionStatus(d) {
       let s = 0;
-      for (let i = 0; i < this.state.data[0].daily[d].habits.length; i++) {
-        if (this.state.data[0].daily[d].habits[i].status === true) {
+      for (let i = 0; i < this.state.data.daily[d].habits.length; i++) {
+        if (this.state.data.daily[d].habits[i].status === true) {
           s++;
         }
       }
@@ -281,11 +318,11 @@ class App extends Component {
     returnStats() {
       let checked = 0;
       let total = 0;
-      let periods = this.state.data[0].daily.length;
+      let periods = this.state.data.daily.length;
 
       for (let i = 0; i < periods; i++) {
-        for (let j = 0; j < this.state.data[0].daily[i].habits.length; j++) {
-          if (this.state.data[0].daily[i].habits[j].status === true) {
+        for (let j = 0; j < this.state.data.daily[i].habits.length; j++) {
+          if (this.state.data.daily[i].habits[j].status === true) {
             checked++
           }
           total++;
