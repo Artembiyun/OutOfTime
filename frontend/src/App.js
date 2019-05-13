@@ -58,44 +58,17 @@ class App extends Component {
             name: "Morning",
             habits: [
               {
-                name: "poo",
+                name: "habit1",
                 value: 0,
                 id: 1
               },
-              {
-                name: "ok",
-                value: 0,
-                id: 2
-              }
             ]
           }, {
             name: "Noon",
-            habits: [
-              {
-                name: "poo",
-                value: 0,
-                id: 1
-              },
-              {
-                name: "ok",
-                value: 0,
-                id: 2
-              }
-            ]
+            habits: []
           }, {
             name: "Evening",
-            habits: [
-              {
-                name: "poo",
-                value: 0,
-                id: 1
-              },
-              {
-                name: "ok",
-                value: 0,
-                id: 2
-              }
-            ]
+            habits: []
           }
         ]
       }
